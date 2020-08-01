@@ -34,7 +34,7 @@
                     },
                     data: {str: str}
                 }).then(response => {
-                        alert(response.data);
+                        console.log(response.data);
                     }
                 );
 
