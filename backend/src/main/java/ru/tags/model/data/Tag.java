@@ -14,6 +14,13 @@ public class Tag {
     @Id
     private String tag;
 
+    public Tag(String tag) {
+        this.tag = tag;
+    }
+
+    public Tag() {
+    }
+
     public String getTag() {
         return tag;
     }
