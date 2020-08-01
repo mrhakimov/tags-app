@@ -12,11 +12,7 @@ import javax.persistence.Table;
 @Table(name = "tag")
 public class Tag {
     @Id
-    String tag;
-
-    public Tag(String tag) {
-        this.tag = tag;
-    }
+    private String tag;
 
     public String getTag() {
         return tag;

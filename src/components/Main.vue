@@ -23,16 +23,17 @@
         name: "Main",
         methods: {
             submit(){
-                let str = document.getElementById('str').value
+                let tag = document.getElementById('str').value
+                console.log(typeof tag)
 
                 this.$axios({
-                    method: 'get',
+                    method: 'post',
                     url: 'http://localhost:9999/tag',
                     headers: {
                         'Content-Type': 'application/json',
                         'Accept': 'application/json',
                     },
-                    data: {str: str}
+                    data: {tag: tag}
                 }).then(response => {
                         console.log(response.data);
                     }
