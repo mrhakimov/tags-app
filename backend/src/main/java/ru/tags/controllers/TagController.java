@@ -1,14 +1,18 @@
 package ru.tags.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 import ru.tags.model.PostFit;
 import ru.tags.model.RequestCredentials;
-import ru.tags.model.data.Tag;
 import ru.tags.repositories.TagRepository;
 
 import java.util.ArrayList;
-import java.util.Collection;
+
+import static java.lang.Character.isWhitespace;
+import static java.lang.Character.toLowerCase;
 
 
 @RestController
@@ -24,13 +28,34 @@ public class TagController {
     @CrossOrigin
     @PostMapping("/tag")
     public ArrayList<String> getTag(@RequestBody RequestCredentials data) {
-        if (data.getTag() == null || data.getTag().equals("") || data.getPlatform() == null
+        String allTagsStr = data.getTag();
+        if (allTagsStr == null || allTagsStr.equals("") || data.getPlatform() == null
                 || data.getPlatform().equals("") || data.getCount() == null || data.getCount() < 0) {
             return null;
         }
 
-        ArrayList<String> list = rep.findByTag(data.getTag(), data.getPlatform());
-        if (list == null || list.isEmpty()) {
+        StringBuilder currentTag = new StringBuilder();
+        allTagsStr += ' ';
+        ArrayList<String> allTags = new ArrayList<>();
+        for (int i = 0; i < allTagsStr.length(); ++i) {
+            char c = allTagsStr.charAt(i);
+            if (isWhitespace(c)) {
+                if (!currentTag.toString().isEmpty()) {
+                    allTags.add(currentTag.toString());
+                    currentTag = new StringBuilder();
+                }
+            } else {
+                currentTag.append(toLowerCase(c));
+            }
+        }
+
+        ArrayList<String> list = new ArrayList<>();
+        for (String tag : allTags) {
+            list.addAll(rep.findByTag(tag, data.getPlatform()));
+        }
+
+        rep.findByTag(allTagsStr, data.getPlatform());
+        if (list.isEmpty()) {
             return null;
         }
 
@@ -47,18 +72,5 @@ public class TagController {
                 break;
         }
         return list;
-
-
-//        tag = new Tag(data.getTag());
-//        if (tag.getTag() != null && !tag.getTag().equals("")) {
-//            rep.save(tag);
-//            System.out.println(data.getCount());
-//            return "Успешно!";
-//        } else {
-//            return "Fault";
-//        }
-
-
     }
-
 }
