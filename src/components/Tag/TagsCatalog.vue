@@ -2,10 +2,10 @@
     <div class="block">
         <br/>
         <h1 align="center">Tags</h1>
-        <p v-if="!TAGS.length">...</p>
+        <p v-if="!this.TAGS.length">...</p>
         <div class="list">
             <Tag
-                    v-for="(tags,index) in TAGS"
+                    v-for="(tags,index) in this.TAGS"
                     :key="tags"
                     :tags="tags"
                     @removeFromList="removeFromList(index)"
@@ -22,23 +22,48 @@
     export default {
         name: "TagsCatalog",
         components: {Tag},
+        props: {
+            text: {
+                type: String,
+                default() {
+                    return ""
+                }
+            },
+            withPost: {
+                type: String,
+                default() {
+                    return "true"
+                }
+            },
+
+        },
         computed: {
             ...mapGetters([
                 'TAGS',
             ]),
-
-
         },
         methods: {
             ...mapActions([
                 'REMOVE_FROM_TAGS',
+                'CHANGE_RESULT'
             ]),
-            removeFromList(index){
-                this.REMOVE_FROM_TAGS(index);
+            changeResult() {
+                if (this.withPost === "false") {
+                    this.CHANGE_RESULT("");
+                } else {
+                    this.CHANGE_RESULT(this.text);
+                }
             },
+            removeFromList(index) {
 
-
+                this.REMOVE_FROM_TAGS(index);
+                this.changeResult();
+            }
+        },
+        mounted() {
+            // this.changeResult();
         }
+
     }
 </script>
 
@@ -52,7 +77,8 @@
         background-color: black;
 
     }
-    div.list{
+
+    div.list {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-around;

@@ -16,21 +16,22 @@
             </div>
 
             <br/>
-            <div  v-if="check">
+            <div v-if="check">
                 <br/>
                 Гапча:
                 <div>
-                    <textarea id="text-area" v-model="text">{text}</textarea>
+                    <textarea @change.prevent="changeResult" id="text-area" v-model="text"
+                              required>{text}</textarea>
                 </div>
                 <br/>
 
                 <div class="radio_button">
                     Хештегоя гапчатонки буроримми ако?
                     <br/>
-                    <input type="radio" id="yes" value="true" v-model="withPost" >
+                    <input type="radio" id="yes" value="true" v-model="withPost" @change.prevent="changeResult">
                     <label for="yes">Да</label>
                     <br/>
-                    <input type="radio" id="no" value="false" v-model="withPost">
+                    <input type="radio" id="no" value="false" v-model="withPost" @change.prevent="changeResult">
                     <label for="no">Нет</label>
                 </div>
                 <br/>
@@ -50,43 +51,84 @@
 
 
         <div v-if="answer">
-            <TagsCatalog/>
+            <TagsCatalog
+                    :text=text
+                    :withPost=withPost
+            />
+        </div>
+
+
+        <div v-if="isReady" class="div-result">
+            <textarea id="result" class="result" v-model="this.RESULT" readonly>{this.RESULT}</textarea>
+        </div>
+
+        <div>
+            <input type="hidden" id="testing-code" :value="this.RESULT">
+            <input class="btn btn-outline" type="button" value="Таёр кун бача" @click="copyToBuffer">
         </div>
     </div>
 </template>
 
 <script>
-    import {mapActions} from "vuex";
+    import {mapActions, mapGetters} from "vuex";
     import TagsCatalog from "./Tag/TagsCatalog";
 
     export default {
 
         name: "Instagram",
         components: {TagsCatalog},
+        computed: {
+            ...mapGetters([
+                'TAGS', 'RESULT'
+            ]),
+        },
         data() {
             return {
                 check: false,
                 withPost: "true",
                 text: "",
-                answer: false
-
+                answer: false,
+                isReady: false,
             }
         },
+
         methods: {
             ...mapActions([
-                'GET_TAGS_FROM_API'
+                'GET_TAGS_FROM_API',
+                'CHANGE_RESULT'
             ]),
-            setList(data){
+            changeResult() {
+                if (this.withPost === "false") {
+                    this.CHANGE_RESULT("");
+                } else {
+                    this.CHANGE_RESULT(this.text);
+                }
+            },
+            setList(data) {
                 this.GET_TAGS_FROM_API(data)
             },
+            copyToBuffer() {
+                let testingCodeToCopy = document.querySelector('#testing-code')
+                testingCodeToCopy.setAttribute('type', 'text')    // 不是 hidden 才能複製
+                testingCodeToCopy.select()
+                try {
+                    var successful = document.execCommand('copy');
+                    var msg = successful ? 'successful' : 'unsuccessful';
+                    alert('Testing code was copied ' + msg);
+                } catch (err) {
+                    alert('Oops, unable to copy');
+                }
+                /* unselect the range */
+                testingCodeToCopy.setAttribute('type', 'hidden')
+                window.getSelection().removeAllRanges()
+            },
             submit() {
+                this.isReady = true;
                 let tag = document.getElementById('str').value
                 let count = this.text.length;
                 if (!this.check) {
                     count = 0;
                 }
-                console.log(count)
-
                 this.$axios({
                     method: 'post',
                     url: 'http://192.168.1.17:9999/tag',
@@ -96,11 +138,11 @@
                     },
                     data: {tag: tag, count: count, platform: "Instagram"}
                 }).then(response => {
-                        this.answer = true;
-                        this.setList(response.data)
-                        console.log(response.data);
-                    }
-                );
+                    this.answer = true;
+                    this.setList(response.data)
+                    this.changeResult()
+                });
+
             }
         }
     }
@@ -177,6 +219,17 @@
     /* Изменение фона кнопки при наведении */
     .button:hover {
         background: #80b438;
+    }
+
+    div.div-result {
+        margin: 12px;
+        padding: 24px;
+    }
+
+
+    .result {
+        width: 75%;
+        height: 500px;
     }
 
 </style>
