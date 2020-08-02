@@ -44,7 +44,6 @@
             <br/>
 
             <div class="div_button">
-
                 <input class="button" type="submit" value="Готово">
             </div>
 
