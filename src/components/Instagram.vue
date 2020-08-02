@@ -16,55 +16,69 @@
             </div>
 
             <br/>
-
-            <br/>
-            Гапча:
-            <div v-if="check">
-                <textarea id="text-area" v-model="text">{text}</textarea>
-            </div>
-            <br/>
-
-            <div class="radio_button" v-if="check">
-                Хештегоя гапчатонки буроримми ако?
+            <div  v-if="check">
                 <br/>
-                <input type="radio" id="yes" value="true" v-model="withPost" >
-                <label for="yes">Да</label>
+                Гапча:
+                <div>
+                    <textarea id="text-area" v-model="text">{text}</textarea>
+                </div>
                 <br/>
-                <input type="radio" id="no" value="false" v-model="withPost">
-                <label for="no">Нет</label>
+
+                <div class="radio_button">
+                    Хештегоя гапчатонки буроримми ако?
+                    <br/>
+                    <input type="radio" id="yes" value="true" v-model="withPost" >
+                    <label for="yes">Да</label>
+                    <br/>
+                    <input type="radio" id="no" value="false" v-model="withPost">
+                    <label for="no">Нет</label>
+                </div>
+                <br/>
+                <br/>
             </div>
-            <br/>
-            <br/>
-            <div class="div_name">
-                <label>Введите ..hashtag#..:</label>
+            <div class="div_tag">
+                <label>Введите Hashtag :</label>
                 <div class="input_str">
                     <input class="str" type="text" id="str" autocomplete="off">
                 </div>
             </div>
             <br/>
-
             <div class="div_button">
                 <input class="button" type="submit" value="Готово">
             </div>
-
         </form>
+
+
+        <div v-if="answer">
+            <TagsCatalog/>
+        </div>
     </div>
 </template>
 
 <script>
+    import {mapActions} from "vuex";
+    import TagsCatalog from "./Tag/TagsCatalog";
+
     export default {
 
         name: "Instagram",
+        components: {TagsCatalog},
         data() {
             return {
                 check: false,
                 withPost: "true",
                 text: "",
+                answer: false
 
             }
         },
         methods: {
-
+            ...mapActions([
+                'GET_TAGS_FROM_API'
+            ]),
+            setList(data){
+                this.GET_TAGS_FROM_API(data)
+            },
             submit() {
                 let tag = document.getElementById('str').value
                 let count = this.text.length;
@@ -82,6 +96,8 @@
                     },
                     data: {tag: tag, count: count, platform: "Instagram"}
                 }).then(response => {
+                        this.answer = true;
+                        this.setList(response.data)
                         console.log(response.data);
                     }
                 );
