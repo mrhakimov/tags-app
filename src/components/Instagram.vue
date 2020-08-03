@@ -142,9 +142,9 @@
                         this.answer = false;
                         this.$notify({
                             group: 'foo',
-                            type: 'warn',
+                            type: 'error',
                             title: 'Ако найофтим акун узр де',
-                            text: 'чфы',
+                            // text: 'чфы',
                             duration: 5000,
                             speed: 1000,
                             data: {}
