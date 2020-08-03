@@ -4,8 +4,6 @@ import Main from "../components/Main";
 import TikTok from "../components/TikTok";
 import Instagram from "../components/Instagram";
 
-
-
 Vue.use(Router);
 
 let router = new Router({

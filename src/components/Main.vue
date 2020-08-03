@@ -12,35 +12,20 @@
 </template>
 
 <script>
-
     export default {
         name: "Main",
         methods: {
-
-
         }
-
-
     }
 </script>
 
-<style >
-
+<style>
     div.header {
         padding: 12.5%;
-        width: 100%; /* Full-width */
-        /*height: 100px;*/
-        /*background-color: #555; !* Dark-grey background *!*/
-        /*overflow: auto; !* Overflow due to float *!*/
+        width: 100%;
     }
 
     .header div {
-        /*float: left; !* Float links side by side *!*/
-        width: 50%; /* Equal width (5 icons with 20% width each = 100%) */
-        /*height: 100px;*/
-        /*text-align: center; !* Center-align text *!*/
-        /*color: white; !* White text color *!*/
-        /*font-size: 50px; !* Increased font size *!*/
+        width: 50%;
     }
-
 </style>

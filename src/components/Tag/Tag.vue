@@ -3,7 +3,6 @@
         <div class="tag">
             <p>#{{tags}} <button class="btn-x btn btn-outline-danger" @click="removeFromList">x</button> </p>
         </div>
-
     </div>
 </template>
 
@@ -32,17 +31,4 @@
         padding: 20px;
         margin-bottom: 20px;
     }
-    /*p{*/
-    /*    position: relative;*/
-    /*}*/
-    /*button{*/
-    /*    width: 24px;*/
-    /*    height: 24px;*/
-    /*    vertical-align: center;*/
-    /*}*/
-    /*p button{*/
-    /*    position: absolute;*/
-    /*    top: -50%;*/
-    /*    right: -25%;*/
-    /*}*/
 </style>

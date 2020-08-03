@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-
 Vue.use(Vuex);
+
+// Author: Amirjon Qodirov
 
 let store = new Vuex.Store({
     state: {
@@ -20,9 +21,9 @@ let store = new Vuex.Store({
             state.tags = [];
         },
         CHANGE: (state, text) => {
-
             state.result = "";
             state.result += text
+
             if (text.length > 0 && text[text.length - 1] !== ' '
                 && text[text.length - 1] !== '\n') {
                 state.result += '\n'

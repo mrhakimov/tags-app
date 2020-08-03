@@ -6,25 +6,16 @@
           </router-view>
       </keep-alive>
       <div></div>
-
   </div>
-
 </template>
 
 <script>
-
-    export default {
-      name: 'App',
-        components: {},
-        computed: {
-
-      }
-
-}
+  export default {
+    name: 'App',
+      components: {},
+      computed: {}
+  }
 </script>
 
 <style >
-
-
-
 </style>

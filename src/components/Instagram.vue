@@ -49,14 +49,12 @@
             </div>
         </form>
 
-
         <div v-if="answer">
             <TagsCatalog
                     :text=text
                     :withPost=withPost
             />
         </div>
-
 
         <div v-if="isReady" class="div-result">
             <textarea id="result" class="result" v-model="this.RESULT" readonly>{this.RESULT}</textarea>
@@ -74,7 +72,6 @@
     import TagsCatalog from "./Tag/TagsCatalog";
 
     export default {
-
         name: "Instagram",
         components: {TagsCatalog},
         computed: {
@@ -91,7 +88,6 @@
                 isReady: false,
             }
         },
-
         methods: {
             ...mapActions([
                 'GET_TAGS_FROM_API',
@@ -109,7 +105,7 @@
             },
             copyToBuffer() {
                 let testingCodeToCopy = document.querySelector('#testing-code')
-                testingCodeToCopy.setAttribute('type', 'text')    // 不是 hidden 才能複製
+                testingCodeToCopy.setAttribute('type', 'text')
                 testingCodeToCopy.select()
                 try {
                     var successful = document.execCommand('copy');
@@ -118,17 +114,21 @@
                 } catch (err) {
                     alert('Oops, unable to copy');
                 }
-                /* unselect the range */
+
+                /* unselects the range */
                 testingCodeToCopy.setAttribute('type', 'hidden')
                 window.getSelection().removeAllRanges()
             },
             submit() {
                 this.isReady = true;
+                
                 let tag = document.getElementById('str').value
                 let count = this.text.length;
+                
                 if (!this.check) {
                     count = 0;
                 }
+
                 this.$axios({
                     method: 'post',
                     url: 'http://192.168.1.17:9999/tag',
@@ -226,10 +226,8 @@
         padding: 24px;
     }
 
-
     .result {
         width: 75%;
         height: 500px;
     }
-
 </style>

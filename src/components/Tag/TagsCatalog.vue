@@ -59,16 +59,11 @@
                 this.REMOVE_FROM_TAGS(index);
                 this.changeResult();
             }
-        },
-        mounted() {
-            // this.changeResult();
         }
-
     }
 </script>
 
 <style>
-
     div.block {
         color: white;
         padding: 36px;
@@ -83,5 +78,4 @@
         flex-wrap: wrap;
         justify-content: space-around;
     }
-
 </style>
