@@ -8,8 +8,6 @@ import ru.tags.model.data.Tag;
 import java.util.ArrayList;
 
 public interface TagRepository extends JpaRepository<Tag, Long> {
-
-    @Query("SELECT tag from Tag where tag LIKE CONCAT('%', :tag, '%') ORDER BY :platform asc " )
+    @Query("SELECT tag FROM Tag WHERE tag LIKE CONCAT('%', :tag, '%') ORDER BY :platform ASC" )
     ArrayList<String> findByTag(@Param("tag") String tag, String platform);
-
 }

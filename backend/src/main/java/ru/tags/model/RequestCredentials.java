@@ -34,5 +34,4 @@ public class RequestCredentials {
     public void setCount(Integer count) {
         this.count = count;
     }
-
 }

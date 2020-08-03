@@ -5,6 +5,9 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+    Author: Muhammadjon Hakimov
+ **/
 public class PostFit {
     private Integer len;
     private List<String> tags;
@@ -36,6 +39,7 @@ public class PostFit {
     }
 
     public List<String> instagramFit() {
+        // Constants from Instagram official website
         int MAX_LEN = 2200;
         int MAX_TAGS = 30;
 
@@ -52,6 +56,7 @@ public class PostFit {
     }
 
     public List<String> tikTokFit() {
+        // Constants from TikTok official website
         int MAX_LEN = 100;
 
         len = MAX_LEN - len;
@@ -59,10 +64,7 @@ public class PostFit {
         ArrayList<Integer> prefixSums = new ArrayList<>();
         int index = calculatePrefixSums(tags, prefixSums, len);
 
-
         tags = tags.stream().limit(index).collect(Collectors.toList());
         return tags;
     }
-
-
 }
