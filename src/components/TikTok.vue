@@ -120,15 +120,15 @@
                 window.getSelection().removeAllRanges()
             },
             submit() {
-                this.isReady = true;
-                
                 let tag = document.getElementById('str').value
                 let count = this.text.length;
-                
+
                 if (!this.check) {
                     count = 0;
                 }
-
+                if (this.text !== "" && this.withPost === 'true'){
+                    this.isReady = true;
+                }
                 this.$axios({
                     method: 'post',
                     url: 'http://192.168.1.17:9999/tag',
@@ -138,9 +138,23 @@
                     },
                     data: {tag: tag, count: count, platform: "TikTok"}
                 }).then(response => {
-                    this.answer = true;
-                    this.setList(response.data)
-                    this.changeResult()
+                    if(response.data === ''){
+                        this.answer = false;
+                        this.$notify({
+                            group: 'foo',
+                            type: 'error',
+                            title: 'Ако найофтим акун узр де',
+                            // text: 'чфы',
+                            duration: 5000,
+                            speed: 1000,
+                            data: {}
+                        })
+                    }else{
+                        this.isReady = true;
+                        this.answer = true;
+                        this.setList(response.data)
+                        this.changeResult()
+                    }
                 });
 
             }

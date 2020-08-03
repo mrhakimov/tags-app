@@ -1,5 +1,5 @@
 <template>
-    <div class="block">
+    <div class="block" v-if="this.TAGS.length">
         <br/>
         <h1 align="center">Tags</h1>
         <p v-if="!this.TAGS.length">...</p>
@@ -55,9 +55,9 @@
                 }
             },
             removeFromList(index) {
-
                 this.REMOVE_FROM_TAGS(index);
                 this.changeResult();
+
             }
         }
     }
