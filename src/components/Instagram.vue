@@ -60,7 +60,7 @@
             <textarea id="result" class="result" v-model="this.RESULT" readonly>{this.RESULT}</textarea>
         </div>
 
-        <div>
+        <div v-if="isReady">
             <input type="hidden" id="testing-code" :value="this.RESULT">
             <input class="btn btn-outline" type="button" value="Таёр кун бача" @click="copyToBuffer">
         </div>
@@ -120,15 +120,15 @@
                 window.getSelection().removeAllRanges()
             },
             submit() {
-                this.isReady = true;
-                
                 let tag = document.getElementById('str').value
                 let count = this.text.length;
-                
+
                 if (!this.check) {
                     count = 0;
                 }
-
+                if (this.text !== "" && this.withPost === 'true'){
+                    this.isReady = true;
+                }
                 this.$axios({
                     method: 'post',
                     url: 'http://192.168.1.17:9999/tag',
@@ -138,9 +138,23 @@
                     },
                     data: {tag: tag, count: count, platform: "Instagram"}
                 }).then(response => {
-                    this.answer = true;
-                    this.setList(response.data)
-                    this.changeResult()
+                    if(response.data === ''){
+                        this.answer = false;
+                        this.$notify({
+                            group: 'foo',
+                            type: 'warn',
+                            title: 'Ако найофтим акун узр де',
+                            text: 'чфы',
+                            duration: 5000,
+                            speed: 1000,
+                            data: {}
+                        })
+                    }else{
+                        this.isReady = true;
+                        this.answer = true;
+                        this.setList(response.data)
+                        this.changeResult()
+                    }
                 });
 
             }

@@ -6,6 +6,7 @@
           </router-view>
       </keep-alive>
       <div></div>
+      <notifications group="foo" />
   </div>
 </template>
 
