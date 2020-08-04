@@ -8,7 +8,39 @@ Vue.use(Vuex);
 let store = new Vuex.Store({
     state: {
         tags: [],
-        result: ""
+        result: "",
+
+        blogTags: [
+            {
+                name: "Sport", description: "Tags for Sport", tags: [{
+                    Tag: "#cdscs", Views: "12T"
+                }]
+            },
+            {
+                name: "Sex", description: "Tags for Sex", tags: [
+                    {
+                        Tag: "#sex", Views: "~T"
+                    },
+                    {
+                        Tag: "#porn", Views: "~M"
+                    },
+
+                ]
+            },
+            {
+                name: "Film", description: "Tags for film", tags: [{
+                    Tag: "#inseption", Views: "1k"
+                }]
+            },
+            {
+                name: "like", description: "Tags for Like", tags: [{
+                    Tag: "#like", Views: "12T"
+                }]
+            },
+
+        ]
+
+
     },
     mutations: {
         SET_TAGS_TO_STATE: (state, tags) => {
@@ -57,6 +89,9 @@ let store = new Vuex.Store({
         },
         RESULT(state) {
             return state.result
+        },
+        BLOG_TAGS(state) {
+            return state.blogTags
         }
     }
 });
