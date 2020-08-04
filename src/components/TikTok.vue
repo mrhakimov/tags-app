@@ -1,7 +1,7 @@
 <template>
     <div>
         <router-link :to="{name: 'main'}">
-            <div class='btn'>Назад</div>
+            <div class='btn'>&lt;</div>
         </router-link>
         <br/>
         <br/>
@@ -11,14 +11,14 @@
         <form v-on:submit.prevent="submit">
             <br/>
             <div class="check_box">
-                Гапча мемонидми ако?
+                Хотите, чтобы мы учли длину Вашего поста?
                 <input type="checkbox" id="checkbox" v-model="check"/>
             </div>
 
             <br/>
             <div v-if="check">
                 <br/>
-                Гапча:
+                Ваш пост:
                 <div>
                     <textarea @change.prevent="changeResult" id="text-area" v-model="text"
                               required>{text}</textarea>
@@ -26,7 +26,7 @@
                 <br/>
 
                 <div class="radio_button">
-                    Хештегоя гапчатонки буроримми ако?
+                    Вывести хештеги вместе с постом?
                     <br/>
                     <input type="radio" id="yes" value="true" v-model="withPost" @change.prevent="changeResult">
                     <label for="yes">Да</label>
@@ -38,7 +38,7 @@
                 <br/>
             </div>
             <div class="div_tag">
-                <label>Введите Hashtag :</label>
+                <label>Введите хештег&#47;тему вашего поста:</label>
                 <div class="input_str">
                     <input class="str" type="text" id="str" autocomplete="off">
                 </div>
@@ -62,7 +62,7 @@
 
         <div>
             <input type="hidden" id="testing-code" :value="this.RESULT">
-            <input class="btn btn-outline" type="button" value="Таёр кун бача" @click="copyToBuffer">
+            <input class="btn btn-outline" type="button" value="Скопировать" @click="copyToBuffer">
         </div>
     </div>
 </template>
@@ -143,8 +143,7 @@
                         this.$notify({
                             group: 'foo',
                             type: 'error',
-                            title: 'Ако найофтим акун узр де',
-                            // text: 'чфы',
+                            title: 'Не удалось найти похожие хештеги!',
                             duration: 5000,
                             speed: 1000,
                             data: {}
