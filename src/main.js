@@ -7,10 +7,12 @@ import BootstrapVue from 'bootstrap-vue/dist/bootstrap-vue.esm';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import Notifications from 'vue-notification';
+import Darkmode from "darkmode-js";
+
 
 Vue.config.productionTip = false;
 Vue.prototype.$axios = axios;
-
+new Darkmode().showWidget();
 Vue.use(BootstrapVue);
 Vue.use(Notifications);
 
