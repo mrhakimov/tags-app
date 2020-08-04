@@ -5,9 +5,10 @@
             {{description}}
         </p>
         <div class="table">
-            <b-btn @click="info"
+            <b-btn @click="info" class="">
                 Info
-            />
+
+            </b-btn>
         </div>
 
 
