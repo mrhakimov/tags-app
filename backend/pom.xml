@@ -9,10 +9,11 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>ru.tags</groupId>
-	<artifactId>foodshop</artifactId>
+	<artifactId>tiksta</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 	<name>tags</name>
-	<description>Server for FoodShop</description>
+	<description>Server for TikSta</description>
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -73,7 +74,18 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
+			<plugin>
+				<groupId>com.heroku.sdk</groupId>
+				<artifactId>heroku-maven-plugin</artifactId>
+				<version>3.0.3</version>
+				<configuration>
+					<appName>tiksta-test</appName>
+				</configuration>
+			</plugin>
 		</plugins>
+
+
 	</build>
 
 </project>

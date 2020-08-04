@@ -131,7 +131,7 @@
                 }
                 this.$axios({
                     method: 'post',
-                    url: 'http://192.168.1.17:9999/tag',
+                    url: 'http://localhost:9999/tag',
                     headers: {
                         'Content-Type': 'application/json',
                         'Accept': 'application/json',
