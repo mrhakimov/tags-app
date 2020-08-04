@@ -53,14 +53,15 @@
             <TagsCatalog
                     :text=text
                     :withPost=withPost
+                    :check="check"
             />
         </div>
 
-        <div v-if="isReady" class="div-result">
+        <div v-if="this.TAGS.length || (withPost==='true' && check)" class="div-result">
             <textarea id="result" class="result" v-model="this.RESULT" readonly>{this.RESULT}</textarea>
         </div>
 
-        <div>
+        <div v-if="this.TAGS.length || (withPost==='true' && check)">
             <input type="hidden" id="testing-code" :value="this.RESULT">
             <input class="btn btn-outline" type="button" value="Скопировать" @click="copyToBuffer">
         </div>
@@ -91,7 +92,8 @@
         methods: {
             ...mapActions([
                 'GET_TAGS_FROM_API',
-                'CHANGE_RESULT'
+                'CHANGE_RESULT',
+                'CLEAR'
             ]),
             changeResult() {
                 if (this.withPost === "false") {
@@ -108,11 +110,36 @@
                 testingCodeToCopy.setAttribute('type', 'text')
                 testingCodeToCopy.select()
                 try {
-                    var successful = document.execCommand('copy');
-                    var msg = successful ? 'successful' : 'unsuccessful';
-                    alert('Testing code was copied ' + msg);
+                    let successful = document.execCommand('copy');
+
+                    if (successful) {
+                        this.$notify({
+                            group: 'foo',
+                            type: 'success',
+                            title: 'Результат скопирован в буфер обмена!',
+                            duration: 5000,
+                            speed: 1000,
+                            data: {}
+                        })
+                    } else {
+                        this.$notify({
+                            group: 'foo',
+                            type: 'error',
+                            title: 'Не удалось скопировать в буфер обмена!',
+                            duration: 5000,
+                            speed: 1000,
+                            data: {}
+                        })
+                    }
                 } catch (err) {
-                    alert('Oops, unable to copy');
+                    this.$notify({
+                        group: 'foo',
+                        type: 'error',
+                        title: 'Не удалось скопировать в буфер обмена!',
+                        duration: 5000,
+                        speed: 1000,
+                        data: {}
+                    })
                 }
 
                 /* unselects the range */
@@ -120,6 +147,7 @@
                 window.getSelection().removeAllRanges()
             },
             submit() {
+                this.CLEAR();
                 let tag = document.getElementById('str').value
                 let count = this.text.length;
 
@@ -152,8 +180,8 @@
                         this.isReady = true;
                         this.answer = true;
                         this.setList(response.data)
-                        this.changeResult()
                     }
+                    this.changeResult()
                 });
 
             }

@@ -7,6 +7,7 @@ import TopTikTok from "../components/Blog/TopTikTok";
 import TopInstagram from "../components/Blog/TopInstagram";
 import Blogs from "../components/Blog/BlogCatalog/Blogs";
 import BlogPage from "../components/Blog/BlogCatalog/BlogPage";
+import MainPage from "../components/MainPage";
 
 Vue.use(Router);
 
@@ -27,6 +28,11 @@ let router = new Router({
       path: '/',
       name: 'main',
       component: Main
+    },
+    {
+      path: '/ppp',
+      name: 'ppp',
+      component: MainPage
     },
     {
       path: '/top_tiktok',

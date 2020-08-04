@@ -35,6 +35,12 @@
                     return "true"
                 }
             },
+            check: {
+                type: Boolean,
+                default(){
+                    return false;
+                }
+            }
 
         },
         computed: {
@@ -58,6 +64,16 @@
                 this.REMOVE_FROM_TAGS(index);
                 this.changeResult();
 
+                if (!this.TAGS.length && (!this.check || this.withPost === "false")) {
+                    this.$notify({
+                        group: 'foo',
+                        type: 'warn',
+                        title: 'По заданному тегу мы не можем ничего предложить!',
+                        duration: 5000,
+                        speed: 1000,
+                        data: {}
+                    })
+                }
             }
         }
     }
