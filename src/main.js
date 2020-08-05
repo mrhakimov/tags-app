@@ -21,6 +21,7 @@ const options = {
   // saveInCookies: false, // default: true,
   // positionFixed: true,
   label: '🌓', // default: ''
+
   // autoMatchOsTheme: false // default: true
 }
 

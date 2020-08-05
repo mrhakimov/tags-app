@@ -1,5 +1,6 @@
 <template>
     <div>
+        <br>
         <Blog class="div_blog"
                 v-for="(blog_tags) in this.BLOG_TAGS"
                 :key="blog_tags.name"

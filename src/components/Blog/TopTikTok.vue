@@ -1,11 +1,13 @@
 <template>
-    <div class="bg-white">
+    <div align="center">
         <h1>Top 10 TikTok hashtags</h1>
-        <p>
-            Top 10 Hashtags on Tiktok with the total number of views and posts on Tiktok. We are trying the best to
-            update the database with pupular and trending hashtags with our algorithm. Tap on the Tiktok to view
-            more related famous hashtags to let your next post a boost.
-        </p>
+        <div class="content">
+            <p>
+                Top 10 Hashtags on Tiktok with the total number of views and posts on Tiktok. We are trying the best to
+                update the database with pupular and trending hashtags with our algorithm. Tap on the Tiktok to view
+                more related famous hashtags to let your next post a boost.
+            </p>
+        </div>
         <div class="table">
             <b-table class="btbl" striped hover :items ="dataTikTok"></b-table>
         </div>
@@ -36,14 +38,25 @@
 </script>
 
 <style scoped>
+    @media screen and (max-width: 400px){
+        div.table {
+            width: 50%;
+            margin-right: 12.5%;
+        }
+    }
 
-
-    div.table {
-        width: 75%;
-        margin: 12px;
-        padding: 12px;
+    @media screen and (min-width: 401px){
+        div.table {
+            width: 50%;
+        }
     }
     .btbl{
+        align-self: center;
         color: #003aad;
+    }
+
+    div.content{
+        padding-left: 12.5%;
+        padding-right: 12.5%;
     }
 </style>

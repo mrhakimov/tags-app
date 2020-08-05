@@ -16,11 +16,10 @@
             <router-view>
             </router-view>
         </keep-alive>
-        <div>
-            <hr>
-            <p align="center">Copyright &copy; 2020</p>
+        <div class="footer">
+<!--            <p align="center">Copyright &copy; 2020</p>-->
+            <notifications group="foo"/>
         </div>
-        <notifications group="foo"/>
     </div>
 </template>
 
@@ -33,5 +32,6 @@
 </script>
 
 <style>
+
 
 </style>

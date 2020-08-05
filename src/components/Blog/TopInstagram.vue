@@ -1,13 +1,15 @@
 <template>
-    <div class="bg-white">
+    <div align="center">
         <h1>Top 100 HashTags on Instagram</h1>
-        <p>
-            Top 100 Hashtags on Instagram with the total number of posting on Instagram. We are trying the best to
-            update the database with pupular and trending hashtags with our algorithm. Tap on the Hashtags to view
-            more related famous hashtags to let your next post a boost.
-        </p>
+        <div class="content">
+            <p>
+                Top 100 Hashtags on Instagram with the total number of posting on Instagram. We are trying the best to
+                update the database with pupular and trending hashtags with our algorithm. Tap on the Hashtags to view
+                more related famous hashtags to let your next post a boost.
+            </p>
+        </div>
         <div class="table">
-            <b-table striped hover :items="dataInstagram"></b-table>
+            <b-table class="btbl vertical_align_center" striped hover :items="dataInstagram"></b-table>
         </div>
     </div>
 </template>
@@ -126,10 +128,26 @@
     }
 </script>
 
-<style>
-    div.table {
-        width: 75%;
-        margin: 12px;
-        padding: 12px;
+<style scoped>
+    @media screen and (max-width: 400px){
+        div.table {
+            width: 50%;
+            margin-right: 12.5%;
+        }
+    }
+
+    @media screen and (min-width: 401px){
+        div.table {
+            width: 50%;
+        }
+    }
+    .btbl{
+        align-self: center;
+        color: #003aad;
+    }
+
+    div.content{
+        padding-left: 12.5%;
+        padding-right: 12.5%;
     }
 </style>

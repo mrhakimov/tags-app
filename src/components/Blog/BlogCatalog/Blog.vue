@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="blogItem">
         <h1>{{name}}</h1>
         <p>
             {{description}}
@@ -47,5 +47,12 @@
 </script>
 
 <style scoped>
-
+    .blogItem {
+        border-radius: 12px;
+        margin: 1rem  12%;
+        flex-basis: 25%;
+        box-shadow: 0 0 80px 0 #0098fe;
+        padding: 16px;
+        /*margin-bottom: 16px;*/
+    }
 </style>
