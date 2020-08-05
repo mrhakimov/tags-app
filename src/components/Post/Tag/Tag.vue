@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="tag">
-            <p>#{{tags}} <button class="btn-x btn btn-outline-danger" @click="removeFromList">x</button> </p>
+            <p>#{{tags}}<button class="btn-x btn btn-outline-info button" @click="removeFromList">X</button> </p>
         </div>
     </div>
 </template>
@@ -27,8 +27,16 @@
 
 <style scoped>
     div.tag {
-        box-shadow: 0 0 2px 0 #ffffff;
-        padding: 20px;
-        margin-bottom: 20px;
+        padding: 2px 2px 0;
+        box-shadow: 0 0 2px 0 #1172bd;
+        border-radius: 8px;
+        /*padding: 12px;*/
+        /*margin-bottom: 12px;*/
+        margin-right: 8px;
+    }
+    button.button{
+
+        margin: 2px;
+        padding: 0px 2px;
     }
 </style>

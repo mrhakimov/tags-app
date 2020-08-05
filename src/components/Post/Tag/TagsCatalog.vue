@@ -1,7 +1,7 @@
 <template>
     <div class="block" v-if="this.TAGS.length">
-        <br/>
         <h1 align="center">Tags</h1>
+        <br>
         <p v-if="!this.TAGS.length">...</p>
         <div class="list">
             <Tag
@@ -30,7 +30,7 @@
                 }
             },
             withPost: {
-                type: String,
+                type: Boolean,
                 default() {
                     return "true"
                 }
@@ -54,7 +54,7 @@
                 'CHANGE_RESULT'
             ]),
             changeResult() {
-                if (this.withPost === "false") {
+                if (!this.withPost) {
                     this.CHANGE_RESULT("");
                 } else {
                     this.CHANGE_RESULT(this.text);
@@ -64,7 +64,7 @@
                 this.REMOVE_FROM_TAGS(index);
                 this.changeResult();
 
-                if (!this.TAGS.length && (!this.check || this.withPost === "false")) {
+                if (!this.TAGS.length && (!this.check || !this.withPost)) {
                     this.$notify({
                         group: 'foo',
                         type: 'warn',
@@ -81,17 +81,18 @@
 
 <style>
     div.block {
-        color: white;
+        color: black;
         padding: 36px;
         margin: 36px;
-        box-shadow: 0 0 24px 0 #c12146;
-        background-color: black;
+        border-radius: 12px;
+        box-shadow: 0 0 24px 0 #136cba;
+        background-color: #f3f3f3;
 
     }
 
     div.list {
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-around;
+        justify-content: center;
     }
 </style>

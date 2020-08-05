@@ -16,7 +16,10 @@
             <router-view>
             </router-view>
         </keep-alive>
-        <div></div>
+        <div>
+            <hr>
+            <p align="center">Copyright &copy; 2020</p>
+        </div>
         <notifications group="foo"/>
     </div>
 </template>
@@ -30,4 +33,5 @@
 </script>
 
 <style>
+
 </style>

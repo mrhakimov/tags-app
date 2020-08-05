@@ -1,48 +1,37 @@
 <template>
     <div>
         <br/>
-        <h1 align="center">Instagram</h1>
+        <h1 align="center" style="font-family: 'Comic Sans MS'">Instagram</h1>
         <br/>
-        <form v-on:submit.prevent="submit">
+        <b-form v-on:submit.prevent="submit">
             <br/>
-            <div class="check_box">
-                Хотите, чтобы мы учли длину Вашего поста?
-                <input type="checkbox" id="checkbox" v-model="check"/>
+            <div class="check_box my-buttons">
+                Want us to consider the length of your post in our calculations?
+                <b-form-checkbox type="checkbox" id="checkbox" v-model="check" switch/>
             </div>
-
             <br/>
             <div v-if="check">
-                <br/>
-                Ваш пост:
                 <div>
-                    <textarea @change.prevent="changeResult" id="text-area" v-model="text"
-                              required>{text}</textarea>
+                    <b-textarea @change="changeResult" id="text-area" placeholder="Your post here.." v-model="text"
+                              required>{text}</b-textarea>
                 </div>
                 <br/>
-
-                <div class="radio_button">
-                    Вывести хештеги вместе с постом?
-                    <br/>
-                    <input type="radio" id="yes" value="true" v-model="withPost" @change.prevent="changeResult">
-                    <label for="yes">Да</label>
-                    <br/>
-                    <input type="radio" id="no" value="false" v-model="withPost" @change.prevent="changeResult">
-                    <label for="no">Нет</label>
+                <div class="check_box">
+                    Display post along hashtags?
+                    <b-form-checkbox type="checkbox" v-model="withPost" switch/>
                 </div>
-                <br/>
-                <br/>
             </div>
+            <br/>
             <div class="div_tag">
-                <label>Введите хештег&#47;тему вашего поста:</label>
                 <div class="input_str">
-                    <input class="str" type="text" id="str" autocomplete="off">
+                    <b-form-input class="str" type="text" id="str" autocomplete="off" required placeholder="hashtag/theme here..."/>
                 </div>
             </div>
             <br/>
             <div class="div_button">
                 <input class="button" type="submit" value="Готово">
             </div>
-        </form>
+        </b-form>
 
         <div v-if="answer">
             <TagsCatalog
@@ -52,13 +41,10 @@
             />
         </div>
 
-        <div v-if="this.TAGS.length || (withPost==='true' && check)" class="div-result">
-            <textarea id="result" class="result" v-model="this.RESULT" readonly>{this.RESULT}</textarea>
-        </div>
-
-        <div v-if="this.TAGS.length || (withPost==='true' && check)">
+        <div v-if="(this.TAGS.length || (withPost && check)) && this.RESULT.length">
+            <b-textarea id="result" class="result" v-model="this.RESULT" readonly>{this.RESULT}</b-textarea>
             <input type="hidden" id="testing-code" :value="this.RESULT">
-            <input class="btn btn-outline" type="button" value="Скопировать" @click="copyToBuffer">
+            <div class="done"><button class="done_btn" @click="copyToBuffer" >copy</button></div>
         </div>
     </div>
 </template>
@@ -78,7 +64,7 @@
         data() {
             return {
                 check: false,
-                withPost: "true",
+                withPost: true,
                 text: "",
                 answer: false,
                 isReady: false,
@@ -91,7 +77,7 @@
                 'CLEAR'
             ]),
             changeResult() {
-                if (this.withPost === "false") {
+                if (!this.withPost) {
                     this.CHANGE_RESULT("");
                 } else {
                     this.CHANGE_RESULT(this.text);
@@ -149,19 +135,19 @@
                 if (!this.check) {
                     count = 0;
                 }
-                if (this.text !== "" && this.withPost === 'true'){
+                if (this.text !== "" && this.withPost) {
                     this.isReady = true;
                 }
                 this.$axios({
                     method: 'post',
-                    url: 'http://localhost:9999/tag',
+                    url: 'http://192.168.1.17:9999/tag',
                     headers: {
                         'Content-Type': 'application/json',
                         'Accept': 'application/json',
                     },
                     data: {tag: tag, count: count, platform: "Instagram"}
                 }).then(response => {
-                    if(response.data === ''){
+                    if (response.data === '') {
                         this.answer = false;
                         this.$notify({
                             group: 'foo',
@@ -171,7 +157,7 @@
                             speed: 1000,
                             data: {}
                         })
-                    }else{
+                    } else {
                         this.isReady = true;
                         this.answer = true;
                         this.setList(response.data)
@@ -190,49 +176,17 @@
         margin: 0 auto;
         max-width: 95%;
         box-sizing: border-box;
-        padding: 40px;
-        border-radius: 5px;
-        background: RGBA(255, 255, 255, 1);
-        -webkit-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, .45);
-        box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, .45);
-    }
+        padding: 4%;
+        color: #000000;/*rgb(154,157,160);*/
+        /*border: 0.0001px solid #000000;*/
+        border-radius: 12px;
+        background: #f3f3f3;
+        -webkit-box-shadow: 0px 0px 56px 0px rgb(43, 163, 299);
 
-    /* Стили полей ввода */
-    .textbox {
-        height: 50px;
-        width: 100%;
-        border-radius: 3px;
-        border: rgba(0, 0, 0, .3) 2px solid;
-        box-sizing: border-box;
-        font-family: 'Open Sans', sans-serif;
-        font-size: 18px;
-        padding: 10px;
-        margin-bottom: 30px;
-    }
-
-    .message:focus,
-    .textbox:focus {
-        outline: none;
-        border: rgba(24, 149, 215, 1) 2px solid;
-        color: rgba(24, 149, 215, 1);
-    }
-
-    /* Стили текстового поля */
-    .message {
-        background: rgba(255, 255, 255, 0.4);
-        width: 100%;
-        height: 120px;
-        border: rgba(0, 0, 0, .3) 2px solid;
-        box-sizing: border-box;
-        -moz-border-radius: 3px;
-        font-size: 18px;
-        font-family: 'Open Sans', sans-serif;
-        -webkit-border-radius: 3px;
-        border-radius: 3px;
-        display: block;
-        padding: 10px;
-        margin-bottom: 30px;
-        overflow: hidden;
+        /*-webkit-box-shadow: 0px 0px 10px 0px rgb(103, 245, 2);*/
+        /*box-shadow: 0px 0px 50px 0px rgb(103, 245, 2);*/
+        /*-webkit-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.45);*/
+        /*box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, .45);*/
     }
 
     /* Базовые стили кнопки */
@@ -240,11 +194,13 @@
         height: 50px;
         width: 100%;
         border-radius: 3px;
-        border: rgba(0, 0, 0, .3) 0px solid;
+        border: rgba(0, 0, 0, 0.3) 0px solid;
         box-sizing: border-box;
         padding: 10px;
-        background: #90c843;
-        color: #FFF;
+        background-color: rgb(43, 163, 299);
+
+        /*background: #90c843;*/
+        color: #f3f3f3;
         font-family: 'Open Sans', sans-serif;
         font-weight: 400;
         font-size: 16pt;
@@ -254,16 +210,53 @@
 
     /* Изменение фона кнопки при наведении */
     .button:hover {
-        background: #80b438;
+        background-color: rgb(11, 52, 173);
+
+        /*background: #80b438;*/
     }
 
-    div.div-result {
-        margin: 12px;
-        padding: 24px;
-    }
+
 
     .result {
+        border-radius: 12px;
+        margin: 12% 12% 0;
+        padding: 12%;
+        -webkit-box-shadow: 0px 0px 33px 0px rgb(43, 163, 299);
         width: 75%;
         height: 500px;
     }
+    div.done{
+
+        border-radius: 12px;
+        border: #000;
+
+        margin-top: 16px;
+        width: 48px;
+        max-width: 42px;
+        /*width: 3rem;*/
+        margin-right: 12.5% ;
+        margin-left: calc(87.5% - 42px);
+        color: black;
+    }
+
+    .done_btn {
+        padding: 2px;
+        display: inline-block;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        outline: none;
+        color: gray;
+        background: white;
+        /*background-color: rgb(43, 163, 299);*/
+        border: 2px solid gray;
+        border-radius: 6px;
+    }
+
+    .done_btn:hover {
+        color: white;
+        background: gray;
+        /*background-color: rgb(11, 52, 173);*/
+    }
+
 </style>
