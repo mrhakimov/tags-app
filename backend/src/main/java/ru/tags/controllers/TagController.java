@@ -46,7 +46,7 @@ public class TagController {
         
         for (int i = 0; i < allTagsStr.length(); ++i) {
             char c = allTagsStr.charAt(i);
-            if (isWhitespace(c)) {
+            if (isWhitespace(c) || c == '#') {
                 if (!currentTag.toString().isEmpty()) {
                     allTags.add(currentTag.toString());
                     currentTag = new StringBuilder();

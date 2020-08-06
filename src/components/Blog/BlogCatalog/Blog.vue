@@ -3,10 +3,10 @@
         <h1>{{name}}</h1>
         <div>
             <b-btn @click="info" class="" v-if="show">
-                Свернуть
+                Collapse
             </b-btn>
             <b-btn @click="info" class="" v-if="!show">
-                Развернуть
+                Expand
             </b-btn>
         </div>
         <br>

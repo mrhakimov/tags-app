@@ -13,7 +13,7 @@
             <div v-if="check">
                 <div>
                     <b-textarea @change="changeResult" id="text-area" placeholder="Your post here.." v-model="text"
-                              required>{text}</b-textarea>
+                              required maxlength="2200">{text}</b-textarea>
                 </div>
                 <br/>
                 <div class="check_box">
