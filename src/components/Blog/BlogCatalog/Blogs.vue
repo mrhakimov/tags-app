@@ -1,13 +1,13 @@
 <template>
     <div>
         <br>
-        <Blog class="div_blog"
-                v-for="(blog_tags) in this.BLOG_TAGS"
+        <Blog
+                v-for="(blog_tags, index) in this.BLOG_TAGS"
                 :key="blog_tags.name"
                 :name="blog_tags.name"
-                :description = "blog_tags.description"
                 :tags="blog_tags.tags"
-                @info="info"
+                :show="blog_tags.show"
+                @info="info(index)"
         />
     </div>
 </template>
@@ -17,6 +17,10 @@
     import {mapGetters} from "vuex";
     export default {
         name: "Blogs",
+        data() {
+            return{
+            }
+        },
         components: {Blog},
         computed: {
             ...mapGetters([
@@ -24,8 +28,13 @@
             ]),
         },
         methods: {
-            info(name){
-                this.$router.push( {name: 'blog', query: { 'blog': name }})
+            info(index){
+                for (let ind in this.BLOG_TAGS){
+                    if (ind !== String(index)) {
+                        this.BLOG_TAGS[ind].show = false;
+                    }
+                }
+                this.BLOG_TAGS[index].show = !this.BLOG_TAGS[index].show
             }
         }
     }

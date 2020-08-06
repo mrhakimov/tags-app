@@ -1,10 +1,7 @@
 <template>
     <div class='blog-page' align="center">
         <h1>{{blog.name}}</h1>
-        <div class="content"> </div>
-        <p>
-            {{blog.description}}
-        </p>
+
         <div class="table">
             <b-table striped hover class="btbl" :items="blog.tags"></b-table>
         </div>

@@ -12,7 +12,7 @@ let store = new Vuex.Store({
 
         blogTags: [
             {
-                name: "Trending Hashtags for funny TikTok videos", description: "Trending Hashtags", tags: [
+                show: false, name: "Trending Hashtags for funny TikTok videos", tags: [
                     {Tag: "#15svines", Views: "12T"},
                     {Tag: "1millionaudition", Views: "12T"},
                     {Tag: "#1mincomedy", Views: "12T"},
@@ -36,7 +36,7 @@ let store = new Vuex.Store({
                 ]
             },
             {
-                name: "Best Hashtags for Educational TikTok videos", description: "Tags for Educational", tags: [
+                show: false, name: "Best Hashtags for Educational TikTok videos", tags: [
                     {Tag: "#careergoals", Views: "~T"},
                     {Tag: "#education", Views: "~M"},
                     {Tag: "#educationalbusiness", Views: "~T"},
@@ -61,13 +61,11 @@ let store = new Vuex.Store({
                 ]
             },
             {
-                name: "Best Hashtags for New songs for more likes", description: "Tags for song", tags: [
+                show: false, name: "Best Hashtags for New songs for more likes", tags: [
                     {Tag: "#duetwithme", Views: "1k"},
                     {Tag: "#foryou", Views: "1k"},
                     {Tag: "#marjaava", Views: "1k"},
-                    {Tag: "#MooMoodTingTongTwist", Views: "1k"},
                     {Tag: "#music", Views: "1k"},
-                    {Tag: "#musically_new_songs", Views: "1k"},
                     {Tag: "#new", Views: "1k"},
                     {Tag: "#new_trending", Views: "1k"},
                     {Tag: "#newsong", Views: "1k"},
@@ -87,7 +85,7 @@ let store = new Vuex.Store({
                 ]
             },
             {
-                name: "Best Hashtags for motivational TikTok videos", description: "Tags for Motivation", tags: [
+                show: false, name: "Best Hashtags for motivational TikTok videos", tags: [
                     {Tag: "#BigBillionAnthem", Views: "12T"},
                     {Tag: "#cleanindia", Views: "12T"},
                     {Tag: "#clear", Views: "12T"},
@@ -111,7 +109,7 @@ let store = new Vuex.Store({
                 ]
             },
             {
-                name: "Best Hashtags for child TikTok videos", description: "Tags for child TikTok videos", tags: [
+                show: false, name: "Best Hashtags for child TikTok videos", tags: [
                     {Tag: "#babygirl", Views: "12T"},
                     {Tag: "#bachha", Views: "12T"},
                     {Tag: "#child4child", Views: "12T"},
@@ -135,7 +133,7 @@ let store = new Vuex.Store({
                 ]
             },
             {
-                name: "Best Hashtags for friendship TikTok videos", description: "Tags for friendship TikTok videos", tags: [
+                show: false, name: "Best Hashtags for friendship TikTok videos", tags: [
 
 
                     {Tag: "#dost", Views: "12T"},
@@ -161,7 +159,7 @@ let store = new Vuex.Store({
                 ]
             },
             {
-                name: "Best Hashtags for Health related TikTok videos for more followers", description: "Tags for Health TikTok videos", tags: [
+                show: false, name: "Best Hashtags for Health related TikTok videos for more followers", tags: [
                     {Tag: "#acupessure", Views: "12T"},
                     {Tag: "#addiction", Views: "12T"},
                     {Tag: "#advice", Views: "12T"},
@@ -191,7 +189,7 @@ let store = new Vuex.Store({
                 ]
             },
             {
-                name: "Popular Hashtags for dancing TikTok videos", description: "Tags for dancing TikTok videos", tags: [
+                show: false, name: "Popular Hashtags for dancing TikTok videos", tags: [
                     {Tag: "#badboydance", Views: "12T"},
                     {Tag: "#dancechallenge", Views: "12T"},
                     {Tag: "#dancecover", Views: "12T"},
@@ -215,7 +213,7 @@ let store = new Vuex.Store({
                 ]
             },
             {
-                name: "Top Hashtags for recipe TikTok videos", description: "Tags for recipe TikTok videos", tags: [
+                show: false, name: "Top Hashtags for recipe TikTok videos", tags: [
                     {Tag: "#breakfastrecipe", Views: "12T"},
                     {Tag: "#cakerecipe", Views: "12T"},
                     {Tag: "#chiritmasrecipe", Views: "12T"},
@@ -239,7 +237,7 @@ let store = new Vuex.Store({
                 ]
             },
             {
-                name: "Top Hashtags for craft TikTok videos", description: "Tags for craft TikTok videos", tags: [
+                show: false, name: "Top Hashtags for craft TikTok videos", tags: [
                     {Tag: "#5_min_craft", Views: "12T"},
                     {Tag: "#5mincraft", Views: "12T"},
                     {Tag: "#airecraft", Views: "12T"},
@@ -263,7 +261,7 @@ let store = new Vuex.Store({
                 ]
             },
             {
-                name: "Best Hashtags for beauty videos for more views", description: "Tags for beauty TikTok videos", tags: [
+                show: false, name: "Best Hashtags for beauty videos for more views", tags: [
                     {Tag: "#beauty4charity", Views: "12T"},
                     {Tag: "#beautyandthebeast", Views: "12T"},
                     {Tag: "#beautyblender", Views: "12T"},
@@ -289,7 +287,7 @@ let store = new Vuex.Store({
                 ]
             },
             {
-                name: "Best Hashtags for art TikTok videos", description: "Tags for art TikTok videos", tags: [
+                show: false, name: "Best Hashtags for art TikTok videos", tags: [
                     {Tag: "#art02", Views: "12T"},
                     {Tag: "#artchallenge", Views: "12T"},
                     {Tag: "#artik", Views: "12T"},
@@ -313,7 +311,7 @@ let store = new Vuex.Store({
                 ]
             },
             {
-                name: "Best Hashtags for festival videos", description: "Tags for festival TikTok videos", tags: [
+                show: false, name: "Best Hashtags for festival videos", tags: [
                     {Tag: "#favfestival", Views: "12T"},
                     {Tag: "#festivalday", Views: "12T"},
                     {Tag: "#festivalfashion", Views: "12T"},
@@ -337,7 +335,7 @@ let store = new Vuex.Store({
                 ]
             },
             {
-                name: "Best Hashtags for rangoli TikTok videos", description: "Tags for rangoli TikTok videos", tags: [
+                show: false, name: "Best Hashtags for rangoli TikTok videos", tags: [
                     {Tag: "#3drangoli", Views: "12T"},
                     {Tag: "#diwalirangoli", Views: "12T"},
                     {Tag: "#easyrangoli", Views: "12T"},

@@ -2,7 +2,10 @@
     <div id="app" class="id">
         <b-navbar type="dark" variant="dark">
             <b-navbar-nav>
-                <b-nav-item href="/">Home</b-nav-item>
+                <b-nav-item href="/">
+                    <img src="./assets/q.png" width="32px" alt="logo">
+                    Home
+                </b-nav-item>
                 <b-nav-item-dropdown text="Create Post" right>
                     <b-dropdown-item href="/instagram">Instagram</b-dropdown-item>
                     <b-dropdown-item href="/tik_tok">TikTok</b-dropdown-item>

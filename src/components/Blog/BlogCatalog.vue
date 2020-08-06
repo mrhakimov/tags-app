@@ -20,7 +20,7 @@
             </span>
             <span class="topTags-r">
                 <router-link :to="{name: 'blogs'}">
-                    <img src="..\..\assets\q.png" class="top_img" alt="topTikTok" />
+                    <img src="..\..\assets\qq.png" class="top_img" alt="topTikTok" />
                     <p style="color: black">More Tags</p>
                 </router-link>
             </span>
