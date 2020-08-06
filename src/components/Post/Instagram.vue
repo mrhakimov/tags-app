@@ -13,7 +13,7 @@
             <div v-if="check">
                 <div>
                     <b-textarea @change="changeResult" id="text-area" placeholder="Your post here.." v-model="text"
-                              required>{text}</b-textarea>
+                              required maxlength="2200">{text}</b-textarea>
                 </div>
                 <br/>
                 <div class="check_box">
@@ -156,11 +156,22 @@
                             duration: 5000,
                             speed: 1000,
                             data: {}
-                        })
+                        });
                     } else {
-                        this.isReady = true;
-                        this.answer = true;
-                        this.setList(response.data)
+                        if (response.data.length) {
+                            this.isReady = true;
+                            this.answer = true;
+                            this.setList(response.data)
+                        } else {
+                             this.$notify({
+                                 group: 'foo',
+                                 type: 'error',
+                                 title: 'Your post is too long!',
+                                 duration: 5000,
+                                 speed: 1000,
+                                 data: {}
+                             });
+                        }
                     }
                     this.changeResult()
                 });
