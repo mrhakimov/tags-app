@@ -156,11 +156,22 @@
                             duration: 5000,
                             speed: 1000,
                             data: {}
-                        })
+                        });
                     } else {
-                        this.isReady = true;
-                        this.answer = true;
-                        this.setList(response.data)
+                        if (response.data.length) {
+                            this.isReady = true;
+                            this.answer = true;
+                            this.setList(response.data)
+                        } else {
+                             this.$notify({
+                                 group: 'foo',
+                                 type: 'error',
+                                 title: 'Your post is too long!',
+                                 duration: 5000,
+                                 speed: 1000,
+                                 data: {}
+                             });
+                        }
                     }
                     this.changeResult()
                 });
