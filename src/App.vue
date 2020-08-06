@@ -12,6 +12,7 @@
                 </b-nav-item-dropdown>
                 <b-nav-item href="/blog_catalog">Blog</b-nav-item>
                 <b-nav-item href="/about">About</b-nav-item>
+
             </b-navbar-nav>
         </b-navbar>
 
@@ -21,16 +22,20 @@
         </keep-alive>
         <div class="footer">
 <!--            <p align="center">Copyright &copy; 2020</p>-->
-            <notifications group="foo"/>
+            <notifications group="foo" position="bottom left"/>
         </div>
     </div>
 </template>
 
 <script>
     export default {
+
         name: 'App',
         components: {},
-        computed: {}
+        computed: {},
+        data() {
+
+        }
     }
 </script>
 

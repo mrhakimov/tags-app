@@ -29,7 +29,7 @@
             </div>
             <br/>
             <div class="div_button">
-                <input class="button" type="submit" value="Готово">
+                <input class="button" type="submit" value="Submit">
             </div>
         </b-form>
 
@@ -97,7 +97,7 @@
                         this.$notify({
                             group: 'foo',
                             type: 'success',
-                            title: 'Результат скопирован в буфер обмена!',
+                            title: 'The result is copied to clipboard!',
                             duration: 5000,
                             speed: 1000,
                             data: {}
@@ -106,7 +106,7 @@
                         this.$notify({
                             group: 'foo',
                             type: 'error',
-                            title: 'Не удалось скопировать в буфер обмена!',
+                            title: 'Couldn\'t copy result to the clipboard!',
                             duration: 5000,
                             speed: 1000,
                             data: {}
@@ -116,7 +116,7 @@
                     this.$notify({
                         group: 'foo',
                         type: 'error',
-                        title: 'Не удалось скопировать в буфер обмена!',
+                        title: 'Couldn\'t copy result to the clipboard!',
                         duration: 5000,
                         speed: 1000,
                         data: {}
@@ -152,7 +152,7 @@
                         this.$notify({
                             group: 'foo',
                             type: 'error',
-                            title: 'Не удалось найти похожие хештеги!',
+                            title: 'No hashtags found!',
                             duration: 5000,
                             speed: 1000,
                             data: {}

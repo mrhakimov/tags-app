@@ -68,7 +68,7 @@
                     this.$notify({
                         group: 'foo',
                         type: 'warn',
-                        title: 'По заданному тегу мы не можем ничего предложить!',
+                        title: 'The result get empty!',
                         duration: 5000,
                         speed: 1000,
                         data: {}
