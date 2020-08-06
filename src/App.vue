@@ -7,11 +7,11 @@
                     Home
                 </b-nav-item>
                 <b-nav-item-dropdown text="Create Post" right>
-                    <b-dropdown-item href="/instagram">Instagram</b-dropdown-item>
-                    <b-dropdown-item href="/tik_tok">TikTok</b-dropdown-item>
+                    <b-dropdown-item><router-link class="nav_bar"  :to="{name: 'instagram'}">Instagram</router-link></b-dropdown-item>
+                    <b-dropdown-item><router-link class="nav_bar" :to="{name: 'tik_tok'}">TikTok</router-link></b-dropdown-item>
                 </b-nav-item-dropdown>
-                <b-nav-item href="/blog_catalog">Blog</b-nav-item>
-                <b-nav-item href="/about">About</b-nav-item>
+                <b-nav-item ><router-link class="nav_bar" :to="{name: 'blogCatalog'}">Blog</router-link></b-nav-item>
+                <b-nav-item ><router-link class="nav_bar" :to="{name: 'about'}">About</router-link></b-nav-item>
 
             </b-navbar-nav>
         </b-navbar>
@@ -40,6 +40,12 @@
 </script>
 
 <style>
-
-
+    .nav_bar{
+        text-decoration: none;
+        color: grey
+    }
+    .nav_bar:hover{
+        text-decoration: none;
+        color: #b6b6b6
+    }
 </style>

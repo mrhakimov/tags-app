@@ -1,10 +1,7 @@
 package ru.tags.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.tags.model.PostFit;
 import ru.tags.model.RequestCredentials;
 import ru.tags.repositories.TagRepository;
@@ -24,6 +21,12 @@ public class TagController {
     @Autowired
     TagController(TagRepository tagRepository) {
         this.tagRepository = tagRepository;
+    }
+
+
+    @RequestMapping("/instagram")
+    protected String redirect() {
+        return "redirect:public/";
     }
 
     @CrossOrigin

@@ -131,7 +131,6 @@
                 this.CLEAR();
                 let tag = document.getElementById('str').value
                 let count = this.text.length;
-
                 if (!this.check) {
                     count = 0;
                 }
@@ -140,7 +139,7 @@
                 }
                 this.$axios({
                     method: 'post',
-                    url: 'http://192.168.1.17:9999/tag',
+                    url: '/tag',
                     headers: {
                         'Content-Type': 'application/json',
                         'Accept': 'application/json',
